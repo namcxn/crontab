@@ -1,4 +1,4 @@
-name: "Close stale issues"
+name: "Bot notify ronin pricing"
 on:
   schedule:
   - cron: "*/5 * * * *"
