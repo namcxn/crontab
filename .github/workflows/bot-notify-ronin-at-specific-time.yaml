@@ -11,4 +11,4 @@ jobs:
     - run: ./jobs/ronin-notify.sh
     env:
       TELEGRAM_CHAT_ID: '-999154067' # Anh DAP CHAI TEST
-      TELEGRAM_BOT_TOKEN: ${{ secret.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
