@@ -11,4 +11,4 @@ jobs:
     - run: ./jobs/ronin-notify-by-percent.sh
     env:
       TELEGRAM_CHAT_ID: '-999154067' # Anh DAP CHAI TEST
-      NOTIFY_PERCENT: '0.0'
+      NOTIFY_PERCENT: '10.0'

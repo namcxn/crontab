@@ -9,7 +9,7 @@ price_1h_percent=$(echo $DATA | jq .market_data.price_change_percentage_1h_in_cu
 python3 - <<EOF
 
 if abs($price_1h_percent) > $NOTIFY_PERCENT:
-    print("price change $price_1h_percent% more than $NOTIFY_PERCENT%, fire notify")
+    print("price change $price_1h_percent% compare to $NOTIFY_PERCENT% difference, fire notify")
     exit(0)
 else:
     print("price changed 1h: $price_1h_percent")
