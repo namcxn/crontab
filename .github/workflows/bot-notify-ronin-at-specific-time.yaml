@@ -10,5 +10,5 @@ jobs:
     - uses: actions/checkout@v3
     - run: ./jobs/ronin-notify.sh
     env:
-      TELEGRAM_CHAT_ID: '-999154067' # Anh DAP CHAI TEST
+      TELEGRAM_CHAT_ID: '-1001318480244' # Hom nay ban da an cung Vi chua?
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
