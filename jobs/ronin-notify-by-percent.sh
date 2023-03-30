@@ -13,7 +13,7 @@ l24h=$(echo $DATA | jq .market_data.low_24h.usd)
 
 echo Current price is $current_price
 
-python3 - <<EOF
+python - <<EOF
 
 if abs($price_1h_percent) > $NOTIFY_PERCENT:
     print("price change $price_1h_percent% compare to $NOTIFY_PERCENT% difference, fire notify")
