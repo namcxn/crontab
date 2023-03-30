@@ -36,5 +36,5 @@ curl -X POST \
 }
 EOF
 else
-    echo 'exit'
+    echo 'Wont notify!'
 fi
