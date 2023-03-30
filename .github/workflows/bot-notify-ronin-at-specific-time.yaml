@@ -4,7 +4,7 @@ on:
   - cron: "0 8,12,15,17,21,23 * * *"
 
 jobs:
-  notify-test:
+  notify-ronin-at-time:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
