@@ -1,4 +1,4 @@
-name: "Bot notify ronin pricing 1h"
+name: "Bot notify ronin pricing at time"
 on:
   schedule:
   - cron: "0 8,12,15,17,21,23 * * *"
