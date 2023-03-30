@@ -15,7 +15,7 @@ echo Current price is $current_price
 
 which python
 
-python - <<EOF
+if python - <<EOF
 
 if abs($price_1h_percent) > $NOTIFY_PERCENT:
     print("price change $price_1h_percent% compare to $NOTIFY_PERCENT% difference, fire notify")
@@ -24,7 +24,7 @@ else:
     print("price changed 1h: $price_1h_percent")
     exit(1)
 EOF
-
+then
 curl -X POST \
      -H 'Content-Type: application/json' \
      https://api.telegram.org/bot$TELEGRAM_BOT_TOKEN/sendMessage \
@@ -35,3 +35,6 @@ curl -X POST \
     "disable_notification": true
 }
 EOF
+else
+    echo 'exit'
+fi
