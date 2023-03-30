@@ -19,3 +19,5 @@ curl -X POST \
     "disable_notification": true
 }
 EOF
+
+echo DONE!
