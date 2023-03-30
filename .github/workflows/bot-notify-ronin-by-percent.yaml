@@ -4,11 +4,10 @@ on:
   - cron: "*/5 * * * *"
 
 jobs:
-  notify:
+  notify-test:
     runs-on: ubuntu-latest
     steps:
     - run: ./jobs/ronin-notify-by-percent.sh
     env:
       TELEGRAM_CHAT_ID: '-999154067' # Anh DAP CHAI TEST
       NOTIFY_PERCENT: '0.0'
-    
