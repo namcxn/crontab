@@ -1,7 +1,7 @@
 name: "Bot notify ronin pricing at time"
 on:
   schedule:
-  - cron: "0 2,5,8,10,14,16 * * *"
+  - cron: "0 1,8,15 * * *"
 
 jobs:
   notify-ronin-at-time-gfbaby:
