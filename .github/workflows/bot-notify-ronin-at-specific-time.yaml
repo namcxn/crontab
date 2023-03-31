@@ -4,11 +4,19 @@ on:
   - cron: "0 2,5,8,10,14,16 * * *"
 
 jobs:
-  notify-ronin-at-time:
+  notify-ronin-at-time-gfbaby:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
     - run: ./jobs/ronin-notify.sh
     env:
       TELEGRAM_CHAT_ID: '-1001318480244' # Hom nay ban da an cung Vi chua?
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+  notify-ronin-at-time-sm:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - run: ./jobs/ronin-notify.sh
+    env:
+      TELEGRAM_CHAT_ID: '-649357836' # Sờ Re - Bầu Trời...
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
