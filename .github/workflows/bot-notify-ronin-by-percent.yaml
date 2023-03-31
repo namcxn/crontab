@@ -11,11 +11,15 @@ jobs:
     - uses: actions/setup-python@v4
       with:
         python-version: '3.10'
-    - run: ./jobs/ronin-notify-by-percent.sh
+    - uses: shogo82148/actions-setup-redis@v1
+      with:
+        auto-start: "false"
+    - run: ./jobs/ronin-notify-by-last-price.sh
     env:
       TELEGRAM_CHAT_ID: '-1001318480244' # Hom nay ban da an cung Vi chua?
       NOTIFY_PERCENT: '10.0'
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      REDIS_ADDR: ${{ secrets.REDIS_ADDR }}
   notify-ronin-by-percent-sm:
     runs-on: ubuntu-latest
     steps:
@@ -23,8 +27,12 @@ jobs:
     - uses: actions/setup-python@v4
       with:
         python-version: '3.10'
-    - run: ./jobs/ronin-notify-by-percent.sh
+    - uses: shogo82148/actions-setup-redis@v1
+      with:
+        auto-start: "false"
+    - run: ./jobs/ronin-notify-by-last-price.sh
     env:
       TELEGRAM_CHAT_ID: '-649357836' # SRE bau troi?
       NOTIFY_PERCENT: '10.0'
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      REDIS_ADDR: ${{ secrets.REDIS_ADDR }}
