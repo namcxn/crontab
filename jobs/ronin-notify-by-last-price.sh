@@ -13,12 +13,18 @@ l24h=$(echo $DATA | jq .market_data.low_24h.usd)
 
 echo Current price is $current_price
 
-PRICE_STATE=".state/$GITHUB_JOB-last-price"
-
-if [ -f $PRICE_STATE ]
+if [ -z "$REDIS_ADDR" ]
 then
-    last_price=$(cat $PRICE_STATE)
-else
+    echo "need redis to store price"
+    exit 1
+fi
+
+PRICE_KEY="ron:price:$GITHUB_JOB:last"
+
+last_price=$(redis-cli -u $REDIS_ADDR get $PRICE_KEY)
+
+if [ -z "$last_price" ]
+then
     last_price="0.0"
 fi
 
@@ -42,12 +48,12 @@ curl -X POST \
     -d  @- << EOF 
 {
     "chat_id": "$TELEGRAM_CHAT_ID", 
-    "text": "Ronin - \$RON price change > $NOTIFY_PERCENT% since last notify\nPrice [USD]: $current_price\nH: $h24h | L: $l24h\n1h changed: $price_1h_percent%\n24h changed: $price_24h_percent%\n7d changed: $price_7d_percent%\n\nCronjob at: https://github.com/duythinht/crontab/",
+    "text": "Ronin - \$RON price has been changed > $NOTIFY_PERCENT% since last price notify\nPrice [USD]: $current_price\nH: $h24h | L: $l24h\n1h changed: $price_1h_percent%\n24h changed: $price_24h_percent%\n7d changed: $price_7d_percent%\n\nCronjob at: https://github.com/duythinht/crontab/",
     "disable_notification": true
 }
 EOF
 
-echo "$current_price" > $PRICE_STATE
+redis-cli -u $REDIS_ADDR set $PRICE_KEY $current_price
 
 else
     echo 'Wont notify!'
