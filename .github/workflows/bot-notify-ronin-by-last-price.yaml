@@ -1,4 +1,4 @@
-name: "Bot notify ronin pricing"
+name: "Bot notify ronin by last price"
 on:
   schedule:
   - cron: "0 * * * *"
@@ -17,10 +17,11 @@ jobs:
     - run: ./jobs/ronin-notify-by-last-price.sh
     env:
       TELEGRAM_CHAT_ID: '-1001318480244' # Hom nay ban da an cung Vi chua?
-      NOTIFY_PERCENT: '10.0'
+      NOTIFY_PERCENT: '5.0'
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       REDIS_ADDR: ${{ secrets.REDIS_ADDR }}
-  notify-ronin-by-percent-sm:
+      LAST_PRICE_KEY: 'ronin:price:gfbaby:last'
+  notify-ronin-by-percent-sre:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
@@ -32,7 +33,25 @@ jobs:
         auto-start: "false"
     - run: ./jobs/ronin-notify-by-last-price.sh
     env:
-      TELEGRAM_CHAT_ID: '-649357836' # SRE bau troi?
-      NOTIFY_PERCENT: '10.0'
+      TELEGRAM_CHAT_ID: '-649357836' # SRE bau troi
+      NOTIFY_PERCENT: '5.0'
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       REDIS_ADDR: ${{ secrets.REDIS_ADDR }}
+      LAST_PRICE_KEY: 'ronin:price:sre:last'
+  notify-ronin-by-percent-bot:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+    - uses: shogo82148/actions-setup-redis@v1
+      with:
+        auto-start: "false"
+    - run: ./jobs/ronin-notify-by-last-price.sh
+    env:
+      TELEGRAM_CHAT_ID: '-999154067' # [TEST] Anh Dap Chai
+      NOTIFY_PERCENT: '5.0'
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      REDIS_ADDR: ${{ secrets.REDIS_ADDR }}
+      LAST_PRICE_KEY: 'ronin:price:bot:last'
