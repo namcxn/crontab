@@ -13,34 +13,7 @@ jobs:
         auto-start: "false"
     - run: ./jobs/ronin-notify.sh
     env:
-      TELEGRAM_CHAT_ID: '-1001318480244' # Hom nay ban da an cung Vi chua?
-      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-      REDIS_ADDR: ${{ secrets.REDIS_ADDR }}
-      LAST_PRICE_KEY: 'ronin:price:gfbaby:last'
-  notify-ronin-at-time-sre:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - uses: shogo82148/actions-setup-redis@v1
-      with:
-        auto-start: "false"
-    - run: ./jobs/ronin-notify.sh
-    env:
-      TELEGRAM_CHAT_ID: '-649357836' # Sờ Re - Bầu Trời...
-      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-      REDIS_ADDR: ${{ secrets.REDIS_ADDR }}
-      LAST_PRICE_KEY: 'ronin:price:sre:last'
-
-  notify-ronin-at-time-bot:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - uses: shogo82148/actions-setup-redis@v1
-      with:
-        auto-start: "false"
-    - run: ./jobs/ronin-notify.sh
-    env:
-      TELEGRAM_CHAT_ID: '-999154067' # [TEST] Anh Dap Chai
+      TELEGRAM_CHAT_ID: '-1001318480244,-649357836,-999154067' # be, sm-sre, bot
       TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       REDIS_ADDR: ${{ secrets.REDIS_ADDR }}
       LAST_PRICE_KEY: 'ronin:price:bot:last'
